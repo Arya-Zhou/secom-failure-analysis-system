@@ -1,0 +1,83 @@
+# ============================================================
+# SECOM 项目配置文件（可提交到 Git）
+# ------------------------------------------------------------
+# 原则：凡是"换个值会改变结果的数字/开关"都放这里，不埋进代码。
+# 密钥类（API key / 内网 url / token）绝不放这里，放 .env（见 .env.example）。
+# ============================================================
+
+# ---- 全局可复现性 ----
+# 全局唯一随机种子：数据划分、模型训练、交叉验证、重采样全部引用它。
+# 注意：固定 seed 保证"该确定的都确定了"，但多线程/BLAS 后端可能残留
+# 微小数值抖动，由回归测试的容差(reproducibility.tolerance)兜底。
+random_state: 42
+
+# ---- 数据路径 ----
+data:
+  # 原始数据默认放在 Secom 根目录（即本重构文件夹的上一级）。
+  features_path: "../secom.data"
+  labels_path: "../secom_labels.data"
+  # 标签时间戳格式
+  timestamp_format: "%d/%m/%Y %H:%M:%S"
+
+# ---- 预处理（对应数据特点：高维稀疏 + 大量缺失）----
+preprocessing:
+  # 缺失值比例超过此阈值的特征直接删除；其余用策略填充。
+  drop_missing_threshold: 1.0      # 1.0 = 仅删全空列；调低可更激进地删高缺失特征
+  impute_strategy: "median"        # median / mean —— 因数据偏态选中位数
+  scale: true                      # StandardScaler 标准化
+  # false = notebook 忠实模式：填充/标准化在全量数据上 fit（与 secom.ipynb 一致，
+  #         用于回归对齐基线；有轻微信息泄漏，属原 notebook 已知问题）。
+  # true  = 生产模式：先划分再在训练集上 fit（防泄漏），指标会与基线略有差异。
+  fit_on_train_only: false
+
+# ---- 特征选择 ----
+feature_selection:
+  n_features_to_select: 40         # 最终保留的关键特征数
+  methods: ["f_test", "mutual_info", "rfe", "random_forest"]  # 参与综合排名的方法
+  # 指定已保存的特征列表文件（如 ../secom_results/secom_选择的特征_*.txt）时，
+  # 跳过选择计算直接使用该列表。用途：原 notebook 的互信息未设种子，若因此
+  # 导致回归比对超容差，可用它锁定与基线完全相同的 40 个特征。null = 正常计算。
+  override_features_path: null
+# "../secom_results/secom_选择的特征_20260610_172752.txt"
+
+# ---- 数据划分 ----
+split:
+  test_size: 0.2
+  stratify: true                   # 分层抽样保持类别比例（应对极度不平衡）
+
+# ---- 类别不平衡（横切关注点：影响建模与评估口径）----
+imbalance:
+  # 基础版策略；后期扩展可选 smote / undersample / threshold_moving。
+  strategy: "class_weight"         # none / class_weight / smote / undersample
+  # 决策阈值：null 表示用模型默认 0.5；做阈值移动时在此设定。
+  decision_threshold: null
+
+# ---- 模型 ----
+model:
+  # 通过名字查表选择模型（配置驱动，便于后期加新模型而不改主流程）。
+  # "all" = 训练并对比注册表中的全部模型（与 notebook 行为一致，便于回归比对）。
+  active: "all"                    # all / logistic / random_forest / ridge
+  cv_folds: 10                     # StratifiedKFold 折数
+
+# ---- 评估（不平衡场景：以 BER/召回为主，而非准确率）----
+evaluation:
+  primary_metric: "ber"            # 主指标
+  report_metrics: ["ber", "recall", "precision", "f1", "auc", "accuracy"]
+  # 10 折交叉验证较耗时且不参与基线比对（基线只含测试集指标），默认关闭。
+  run_cv: false
+
+# ---- 可复现性回归校验 ----
+reproducibility:
+  baseline_path: "baseline_metrics.json"
+  tolerance: 0.01                  # |new - old| < tolerance 视为一致
+
+# ---- 输出 ----
+output:
+  results_dir: "outputs"           # 生成物目录（已被 .gitignore 忽略）
+  log_level: "INFO"                # DEBUG / INFO / WARNING
+
+# ---- 运行模式 ----
+run:
+  # quick 模式：小样本、跳过耗时步骤（RFE/网格搜索），用于调试和现场演示。
+  quick: false
+  quick_sample_size: 200

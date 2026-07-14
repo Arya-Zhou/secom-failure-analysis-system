@@ -1,0 +1,31 @@
+# ---- 密钥/环境 ----
+.env
+
+# ---- 数据（从 UCI 下载，不入库；见 README）----
+*.data
+../secom.data
+../secom_labels.data
+
+# ---- 生成物：模型、结果、图表 ----
+outputs/
+*.pkl
+*.png
+*.csv
+*.joblib
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+env/
+vvsecom/
+
+# ---- IDE / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+*:Zone.Identifier

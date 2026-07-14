@@ -1,0 +1,4 @@
+# 跨 OS 协作：仓库内统一存 LF；按脚本类型指定检出行尾
+* text=auto
+*.sh text eol=lf
+*.bat text eol=crlf

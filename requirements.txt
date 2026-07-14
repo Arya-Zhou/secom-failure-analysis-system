@@ -1,0 +1,21 @@
+# 依赖锁版本（保证半年后仍可复现；版本号可按你本地实际微调）
+numpy==1.26.4
+pandas==2.1.4
+scikit-learn==1.3.2
+scipy==1.11.4
+matplotlib==3.8.2
+seaborn==0.13.1
+pyyaml==6.0.1
+python-dotenv==1.0.1
+joblib==1.3.2
+
+# ---- 测试（verify.sh 阶段6 / pytest 回归）----
+pytest==7.4.4
+
+# ---- 后期扩展（面试反馈后再按需解注释安装）----
+# shap==0.44.1          # 可解释性分析（增强方向：关键工艺参数定位）
+# imbalanced-learn==0.12.0  # SMOTE 等不平衡学习
+# xgboost==2.0.3
+# lightgbm==4.3.0
+# fastapi==0.109.0      # 若部署为服务
+# streamlit==1.30.0     # 若做可视化 demo
