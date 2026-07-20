@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "status": "ok",
+  "run_tag": "20260720_163120",
+  "model": "岭分类器",
+  "random_seed": 42,
+  "global": {
+    "png": "shap_summary_bar_岭分类器.png",
+    "json": "shap_values_岭分类器.json",
+    "n_samples_explained": 314
+  },
+  "cases": {
+    "TP": {
+      "status": "generated",
+      "wafer_id": 336,
+      "report": "shap_explanation_wafer_336_TP.txt",
+      "plot": "shap_contribution_wafer_336_TP.png",
+      "output_space": "decision margin",
+      "consistency_ok": true,
+      "deviation": 1.1102230246251565e-16
+    },
+    "FN": {
+      "status": "generated",
+      "wafer_id": 1242,
+      "report": "shap_explanation_wafer_1242_FN.txt",
+      "plot": "shap_contribution_wafer_1242_FN.png",
+      "output_space": "decision margin",
+      "consistency_ok": true,
+      "deviation": 1.1102230246251565e-16
+    }
+  },
+  "background_size": 100,
+  "shap_method": "linear",
+  "output_space": "decision margin"
+}
