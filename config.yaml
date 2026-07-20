@@ -71,6 +71,12 @@ reproducibility:
   baseline_path: "baseline_metrics.json"
   tolerance: 0.01                  # |new - old| < tolerance 视为一致
 
+# ---- 可解释性（SHAP，仅 full 模式生成）----
+explain:
+  enabled: true
+  required: true                   # true = SHAP 失败使整个流程失败（防"验证假通过"）
+  background_size: 100             # SHAP 背景样本数（从训练集抽样，代表总体分布，须 > 0）
+
 # ---- 输出 ----
 output:
   results_dir: "outputs"           # 生成物目录（已被 .gitignore 忽略）

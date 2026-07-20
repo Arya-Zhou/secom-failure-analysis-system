@@ -29,3 +29,6 @@ vvsecom/
 .idea/
 .DS_Store
 *:Zone.Identifier
+
+# ---- 演示产物白名单（README 引用；须位于上方 *.png 规则之后才生效）----
+!docs/demo/*.png
