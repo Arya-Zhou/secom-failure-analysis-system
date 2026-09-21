@@ -1,27 +1,4 @@
-"""可解释性 / 失效根因分析。
-
-使用 SHAP 提供两层解释：
-  1. explain_global：全局特征重要性（测试集聚合，平均 |SHAP|）
-  2. explain_wafer：单晶圆失效归因（样本级 SHAP 分解 + 文本报告 + 贡献图）
-
-解释器按模型自动选择（_make_explainer）：
-  - 线性模型（有 coef_）  -> LinearExplainer，解析解，毫秒级
-  - 树集成（estimators_） -> TreeExplainer，多项式时间精确解
-  - 其他                  -> KernelExplainer 兜底（采样近似，慢，背景需降采样）
-
-两个必须区分的概念（报告与 JSON 中均显式标注，不可混用）：
-  - 展示分数（_model_score）：给人看的模型判定强度（概率优先，其次决策分数）；
-  - 解释空间（output_space）：SHAP 值实际分解所在的输出空间——linear 为
-    decision margin（对逻辑回归即 log-odds），tree 为正类概率，kernel 与
-    传入的 predict_fn 严格一致。自洽校验只能在解释空间内做
-    （baseline + sum(SHAP) ≈ _explained_output），拿概率去对 margin 是错的。
-
-注意：SHAP 背景数据（background）必须是能代表总体分布的样本集（如训练集抽样），
-绝不能用待解释样本自身——那样期望基线=样本输出，所有 SHAP 值恒为 0。
-
-图表内文字一律用英文：运行环境（WSL/CI）通常无中文字体，中文会渲染成方框；
-中文表述放在 .txt / .json 产物中（不依赖字体）。
-"""
+"""可解释性与失效根因分析：explain_global 出全局特征重要性，explain_wafer 出单晶圆归因。"""
 from __future__ import annotations
 
 import json
@@ -30,11 +7,12 @@ from pathlib import Path
 
 import matplotlib
 
-matplotlib.use("Agg")  # 无显示环境（WSL/CI）下生成图片
+matplotlib.use("Agg")  # 无显示环境下生成图片
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import shap
+from sklearn.ensemble import HistGradientBoostingClassifier
 
 logger = logging.getLogger(__name__)
 
@@ -54,12 +32,9 @@ _CASE_DESC = {
 
 
 def _make_explainer(model, background: pd.DataFrame, seed: int = 0):
-    """按模型类型选择 SHAP 解释器。
-
-    返回 (explainer, method, output_space)：
-      method in {"linear", "tree", "kernel"}；
-      output_space 为 SHAP 值分解所在的输出空间标注，自洽校验必须以它为准。
-    """
+    """按模型类型选择 SHAP 解释器，返回 (explainer, method, output_space)。"""
+    if isinstance(model, HistGradientBoostingClassifier):
+        return shap.TreeExplainer(model, model_output="raw"), "tree", "log-odds (decision margin)"
     if hasattr(model, "estimators_"):  # 树集成（RandomForest 等）
         try:
             return shap.TreeExplainer(model), "tree", "positive-class probability"
@@ -91,14 +66,10 @@ def _make_explainer(model, background: pd.DataFrame, seed: int = 0):
 
 
 def _explained_output(model, x_2d, method: str) -> float:
-    """SHAP 分解所在空间的模型原始输出——自洽校验的唯一正确比较对象。
-
-    与 _make_explainer 的空间约定严格一致：
-      linear -> decision_function（逻辑回归即 log-odds）
-      tree   -> 正类概率
-      kernel -> 与 predict_fn 的分支完全相同
-    """
+    """返回解释空间内的模型原始输出，是自洽校验唯一正确的比较对象。"""
     if method == "tree":
+        if isinstance(model, HistGradientBoostingClassifier):
+            return float(np.ravel(model.decision_function(x_2d))[0])
         return float(model.predict_proba(x_2d)[0, 1])
     if method == "linear":
         return float(np.ravel(model.decision_function(x_2d))[0])
@@ -121,7 +92,7 @@ def _positive_class_values(shap_values) -> np.ndarray:
 
 
 def _model_score(model, x_2d) -> tuple[float, str]:
-    """返回 (展示分数, 语义标签)。概率与决策分数严格区分，不冒充。"""
+    """返回 (展示分数, 语义标签)，只用于报告展示。"""
     if hasattr(model, "predict_proba"):
         return float(model.predict_proba(x_2d)[0, 1]), "失效概率"
     if hasattr(model, "decision_function"):
@@ -130,14 +101,7 @@ def _model_score(model, x_2d) -> tuple[float, str]:
 
 
 def pick_case_positions(y_true, y_pred, scores) -> dict:
-    """TP/FN 案例极值选样（确定性，不依赖随机）。
-
-    TP = 失效分数最高的命中（模型最有把握抓对的），
-    FN = 失效分数最高的漏检（最接近判定阈值、"差一点就抓到"，衔接阈值移动叙事）。
-
-    返回 {"TP": 位置索引或 None, "FN": 位置索引或 None}；某类不存在时为 None，
-    由调用方记录 warning（跳过就写跳过，不与"通过"混淆）。
-    """
+    """确定性极值选样：TP 取失效分数最高的命中，FN 取失效分数最高的漏检。"""
     y_true = np.asarray(y_true)
     y_pred = np.asarray(y_pred)
     scores = np.asarray(scores)
@@ -158,6 +122,38 @@ def _validate_columns(feature_names: list[str], n_cols: int, cols_a, cols_b) -> 
         raise ValueError("待解释数据与 background 的特征列不一致（数量或顺序）")
 
 
+def _mean_abs_shap(model, X: pd.DataFrame, background: pd.DataFrame, seed: int):
+    """求各特征的平均/标准差 |SHAP|，返回 (mean_abs, std_abs, method, space, 实际解释样本数)。"""
+    explainer, method, space = _make_explainer(model, background, seed)
+    if method == "kernel" and len(X) > _KERNEL_EXPLAIN_MAX:
+        logger.info("[SHAP] kernel 方法较慢，解释样本 %d -> %d", len(X), _KERNEL_EXPLAIN_MAX)
+        X = X.sample(_KERNEL_EXPLAIN_MAX, random_state=seed)
+    shap_values = _positive_class_values(explainer.shap_values(X))
+    return (np.abs(shap_values).mean(axis=0), np.abs(shap_values).std(axis=0),
+            method, space, int(shap_values.shape[0]))
+
+
+def shap_feature_ranking(
+    model,
+    X: pd.DataFrame,
+    feature_names: list[str],
+    background: pd.DataFrame,
+    seed: int = 0,
+    top_k: int | None = None,
+) -> tuple[list[str], str]:
+    """按平均 |SHAP| 降序返回特征名与所用解释器方法，不落盘；
+    X 与 background 必须都来自训练集，否则特征集合会见到测试数据。"""
+    if len(background) == 0:
+        raise ValueError("背景数据为空（explain.background_size 必须大于 0）")
+    _validate_columns(feature_names, X.shape[1], background.columns, X.columns)
+    mean_abs, _std, method, space, n = _mean_abs_shap(model, X, background, seed)
+    order = np.argsort(-mean_abs)
+    ranked = [feature_names[i] for i in order]
+    logger.info("[SHAP] 特征排名 | 方法=%s | 解释空间=%s | 样本=%d | 取前 %s 个",
+                method, space, n, top_k if top_k else len(ranked))
+    return (ranked[:top_k] if top_k else ranked), method
+
+
 def explain_global(
     model,
     X: pd.DataFrame,
@@ -167,49 +163,26 @@ def explain_global(
     background: pd.DataFrame | None = None,
     seed: int = 0,
 ) -> dict:
-    """全局特征影响分析（平均 |SHAP| 排名）。
-
-    Args:
-        model: 已训练的分类器
-        X: 待解释特征矩阵（DataFrame，保留特征名以避免 sklearn 警告）
-        feature_names: 特征名列表
-        model_name: 模型展示名（用于文件名/日志）
-        output_dir: 输出目录
-        background: SHAP 背景数据（训练集抽样）；None 则退化用 X 本身
-        seed: 随机种子（KernelExplainer 降采样用）
-
-    生成文件：
-        - shap_summary_bar_<model_name>.png : Top-15 特征重要性柱状图
-        - shap_values_<model_name>.json     : 全部特征 SHAP 汇总 + 解释元数据
-
-    返回 dict：{"shap_method", "output_space", "importance": {feature: mean_abs_shap 降序}}，
-    供调用方（pipeline manifest）回填解释元数据。
-    """
+    """全局特征影响分析：对 X 求各特征的平均 |SHAP| 并降序排名。"""
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     if background is None:
+        # 背景须代表总体分布。用待解释样本自身会使期望基线等于样本输出，SHAP 值恒为 0
         background = X
     if len(background) == 0:
         raise ValueError("背景数据为空（explain.background_size 必须大于 0）")
     _validate_columns(feature_names, X.shape[1], background.columns, X.columns)
 
-    explainer, method, space = _make_explainer(model, background, seed)
-    if method == "kernel" and len(X) > _KERNEL_EXPLAIN_MAX:
-        logger.info("[SHAP] kernel 方法较慢，解释样本 %d -> %d", len(X), _KERNEL_EXPLAIN_MAX)
-        X = X.sample(_KERNEL_EXPLAIN_MAX, random_state=seed)
-
-    logger.info("[SHAP] 全局解释 | 方法=%s | 解释空间=%s | 样本=%d | 模型=%s",
-                method, space, len(X), model_name)
-    shap_values = _positive_class_values(explainer.shap_values(X))
-
-    mean_abs = np.abs(shap_values).mean(axis=0)
-    std_abs = np.abs(shap_values).std(axis=0)
+    logger.info("[SHAP] 全局解释 | 样本=%d | 模型=%s", len(X), model_name)
+    mean_abs, std_abs, method, space, n_explained = _mean_abs_shap(
+        model, X, background, seed)
+    logger.info("[SHAP] 方法=%s | 解释空间=%s | 实际解释样本=%d", method, space, n_explained)
     order = np.argsort(-mean_abs)
 
     for i in order[:5]:
         logger.info("  Top特征 %s: mean|SHAP|=%.4f", feature_names[i], mean_abs[i])
 
-    # 1. Top-15 柱状图（英文标签：环境无中文字体时避免方框）
+    # 1. Top-15 柱状图
     top = order[: min(15, len(order))]
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.barh(range(len(top)), mean_abs[top], color="steelblue")
@@ -224,14 +197,14 @@ def explain_global(
     plt.close(fig)
     logger.info("[SHAP] 全局重要性图已保存: %s", png_path)
 
-    # 2. JSON 汇总（含解释元数据：任何旧产物可独立判断来源与能否复用）
+    # 2. JSON 汇总（附解释元数据，使旧产物可独立判断来源与能否复用）
     summary = {
         "model": model_name,
         "shap_method": method,
         "output_space": space,
         "random_seed": int(seed),
         "background_size": int(len(background)),
-        "n_samples_explained": int(shap_values.shape[0]),
+        "n_samples_explained": n_explained,
         "features": {
             feature_names[i]: {
                 "mean_abs_shap": float(mean_abs[i]),
@@ -266,28 +239,7 @@ def explain_wafer(
     top_n: int = 5,
     seed: int = 0,
 ) -> dict:
-    """单晶圆失效归因（样本级 SHAP 分解）。
-
-    Args:
-        model: 已训练的分类器
-        x_row: 单个样本（pd.Series，保留特征名）
-        y_true: 真实标签（0=正常, 1=失效）
-        feature_names: 特征名列表
-        model_name: 模型展示名
-        output_dir: 输出目录
-        background: SHAP 背景数据（训练集抽样，不可用样本自身）
-        wafer_id: 晶圆稳定标识（数据集原始行号），用于文件名与追溯
-        case: 案例类型标注（TP/FN/FP/TN），提供时写入报告并作为文件名后缀
-        top_n: 报告中列出的拉动/抑制特征数（文本 Top-5；贡献图固定 Top-10）
-        seed: 随机种子
-
-    生成文件（case 提供时文件名追加 _<case> 后缀）：
-        - shap_explanation_wafer_<id>[_case].txt  : 文本归因报告
-        - shap_contribution_wafer_<id>[_case].png : Top-10 签名贡献条形图
-          （红=拉动失效，蓝=抑制；非严格意义的 SHAP waterfall，故不用该名）
-
-    返回 dict：预测、基线、自洽校验结果、各特征 SHAP 值。
-    """
+    """单晶圆失效归因：对单行样本做 SHAP 分解，背景须为训练集抽样，不可用待解释样本自身。"""
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     if len(background) == 0:
@@ -307,7 +259,8 @@ def explain_wafer(
     score, score_label = _model_score(model, x_2d)
     pred_class = int(model.predict(x_2d)[0])
 
-    # ---- 自洽校验：只在解释空间内比较；偏差如实输出，超容差显式标注 ----
+    # 自洽校验：baseline + sum(SHAP) 只能与解释空间内的模型输出比较；展示分数可能落在
+    # 另一空间（概率 vs log-odds，隔一个 sigmoid），跨空间比较必报巨大偏差，如实输出。
     explained_out = _explained_output(model, x_2d, method)
     recon = baseline + float(sv.sum())
     deviation = abs(recon - explained_out)
@@ -325,7 +278,7 @@ def explain_wafer(
     pushing = [(n, v, s) for n, v, s in contrib if s > 0][:top_n]
     protecting = [(n, v, s) for n, v, s in contrib if s < 0][:top_n]
 
-    # ---- 文本报告（中文放 txt，不依赖字体）----
+    # ---- 文本报告 ----
     case_line = f" | 案例类型: {case}（{_CASE_DESC.get(case, '')}）" if case else ""
     lines = [
         "单晶圆失效归因报告",
@@ -362,7 +315,7 @@ def explain_wafer(
     txt_path.write_text("\n".join(lines), encoding="utf-8")
     logger.info("[SHAP] 单晶圆报告已保存: %s", txt_path)
 
-    # ---- Top-10 签名贡献图 ----
+    # ---- Top-10 带符号贡献图（红=拉动失效，蓝=抑制）----
     top10 = contrib[:10][::-1]  # barh 自下而上
     names = [t[0] for t in top10]
     vals = [t[2] for t in top10]

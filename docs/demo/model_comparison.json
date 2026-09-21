@@ -1,0 +1,4391 @@
+{
+  "artifact_schema_version": 1,
+  "status": "ok",
+  "protocol": {
+    "population": "reference_train_repeated_holdout",
+    "input_scope": "reference_train_only",
+    "n_population": 1253,
+    "n_splits": 20,
+    "test_size": 0.2,
+    "seed": 42,
+    "outer_test_used_for_selection": false,
+    "same_population_as_metric_resampling": false,
+    "feature_selection_source": "audited_per_split_four_method_vote",
+    "interval_interpretation": "overlapping_split_percentiles_not_mean_confidence_intervals",
+    "interval_percentiles": [
+      5.0,
+      95.0
+    ]
+  },
+  "analysis_plan_sha256": "d09867fee06ab90332d946381503d64da608a5cfdc824e4e8a53db8f817a5f5e",
+  "fingerprint": {
+    "training_data_sha256": "edbb63e043dc3279b603392caac67d48ed931600ea96a0837a3dee561b1e292e",
+    "outer_test_data_sha256": "17655dd72b74f22173d907f17ac50a60ecd30bc8855f7111550be7f6effc3cb2",
+    "source_sha256": {
+      "model_comparison.py": "2bec5a43148a7c9e980e9292d74d520a2e435d437c6e3484226cab36f0c9641b",
+      "model_comparison_analysis.py": "f75b5dac2c6eac200f422cd93048bc0349004b7eb04e66bc968666fff7b02dc3",
+      "modeling.py": "2558b03098368553c9adcdbe41d4d67f5f0c3e838b2281c24821eaef5e6a8678",
+      "evaluation.py": "5fbebb4bdc57b8c78aff5055045ed9f3bc9a5329ee04a10b972ba99f451832d6",
+      "imbalance.py": "ac086d08cc94179069efb3a2ffaf2d52a507a3fd3daaadb26412a6303582049c",
+      "calibration.py": "dd8e7174435a19727c379f460196b98b84f0bd9fe1001d9adae06f6609353a76",
+      "explain.py": "2c036b3a76fae0be83799ca33413b44da243c60a5c67ce7ad854cc46012e7f70"
+    },
+    "environment": {
+      "python": "3.10.12",
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "sklearn": "1.3.2",
+      "imblearn": "0.12.0",
+      "joblib": "1.3.2"
+    }
+  },
+  "models": {
+    "logistic": {
+      "role": "delivery_candidate",
+      "display_name": "逻辑回归",
+      "feature_mode": "vote",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3939793866264455,
+          "mean": 0.3927287581699347,
+          "low": 0.33734288587229766,
+          "high": 0.4466880341880342,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.46176470588235297,
+          "low": 0.35000000000000003,
+          "high": 0.5941176470588236,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.11893939393939394,
+          "mean": 0.11931160552177947,
+          "low": 0.09457455113192818,
+          "high": 0.15723878592532903,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18729463307776562,
+          "mean": 0.18928873528676743,
+          "low": 0.1489102564102564,
+          "high": 0.23686274509803923,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6554801407742584,
+          "mean": 0.6388134741075916,
+          "low": 0.5513826043237808,
+          "high": 0.7251633986928104,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.15759063604050216,
+          "mean": 0.1735220096200945,
+          "low": 0.1085673992248317,
+          "high": 0.2969404987417817,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18664133892749735,
+          "mean": 0.18426446537080743,
+          "low": 0.1650486992942572,
+          "high": 0.20344111987859756,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.599601593625498,
+          "mean": 0.5950199203187252,
+          "low": 0.5254980079681275,
+          "high": 0.6671314741035856,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.23529411764705882,
+          "low": 0.11470588235294119,
+          "high": 0.4117647058823529,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.24362099788720948,
+        "recall": 0.7619047619047619,
+        "precision": 0.1797752808988764,
+        "f1": 0.2909090909090909,
+        "auc": 0.7812449211766618,
+        "pr_auc": 0.20937890073461696,
+        "brier": 0.17626166905141946,
+        "expected_cost": 123.0,
+        "cost_per_wafer": 0.39171974522292996,
+        "recall_at_fp_budget": 0.3333333333333333,
+        "specificity": 0.7508532423208191,
+        "confusion": {
+          "tn": 220,
+          "fp": 73,
+          "fn": 5,
+          "tp": 16
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {}
+    },
+    "ridge": {
+      "role": "delivery_candidate",
+      "display_name": "岭分类器",
+      "feature_mode": "vote",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.38543237807943687,
+          "mean": 0.3796254399195576,
+          "low": 0.29888134741075917,
+          "high": 0.4589994972347914,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.4911764705882352,
+          "low": 0.35294117647058826,
+          "high": 0.65,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12489557226399331,
+          "mean": 0.12504967788902877,
+          "low": 0.0865047995482778,
+          "high": 0.16331331331331334,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1963855421686747,
+          "mean": 0.19899973370177407,
+          "low": 0.13894111825828798,
+          "high": 0.2646339575917041,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6556058320764203,
+          "mean": 0.6444444444444444,
+          "low": 0.5564605329311212,
+          "high": 0.7367395676219205,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.16332504915682747,
+          "mean": 0.17529545443341635,
+          "low": 0.10913883096467145,
+          "high": 0.298735869227933,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5836653386454184,
+          "mean": 0.5780876494023903,
+          "low": 0.4537848605577689,
+          "high": 0.6908366533864543,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2617647058823529,
+          "low": 0.17058823529411765,
+          "high": 0.35588235294117654,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.24703396717048592,
+        "recall": 0.7619047619047619,
+        "precision": 0.17582417582417584,
+        "f1": 0.28571428571428575,
+        "auc": 0.7822200552575979,
+        "pr_auc": 0.20147382462520713,
+        "brier": null,
+        "expected_cost": 125.0,
+        "cost_per_wafer": 0.3980891719745223,
+        "recall_at_fp_budget": 0.3333333333333333,
+        "specificity": 0.7440273037542662,
+        "confusion": {
+          "tn": 218,
+          "fp": 75,
+          "fn": 5,
+          "tp": 16
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {
+        "operating_point": "model_comparison_operating_point.pkl",
+        "operating_point_sha256": "51d7bdbb8ab2f2913f9a9cc1bb7fffdff94530823f3bc9b1687cd6ba1eb61488"
+      }
+    },
+    "elasticnet": {
+      "role": "delivery_candidate",
+      "display_name": "ElasticNet逻辑回归",
+      "feature_mode": "embedded",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.4159753645047763,
+          "mean": 0.410369532428356,
+          "low": 0.36489441930618405,
+          "high": 0.4785382101558572,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3235294117647059,
+          "mean": 0.33823529411764713,
+          "low": 0.17647058823529413,
+          "high": 0.4735294117647059,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.14142857142857143,
+          "mean": 0.13334663878939162,
+          "low": 0.08766968325791856,
+          "high": 0.1698573400828348,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1923076923076923,
+          "mean": 0.19039233439200426,
+          "low": 0.11712184873949581,
+          "high": 0.24216748768472907,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6491955756661639,
+          "mean": 0.6566867772750126,
+          "low": 0.5620160884866767,
+          "high": 0.745211161387632,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.15125572359896497,
+          "mean": 0.1617352218012101,
+          "low": 0.09814944343752702,
+          "high": 0.2471163557336504,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.13908606824982395,
+          "mean": 0.1416905622270093,
+          "low": 0.12753673235270555,
+          "high": 0.15791435813120414,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5976095617529881,
+          "mean": 0.5964143426294821,
+          "low": 0.5318725099601593,
+          "high": 0.6822709163346613,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.24705882352941178,
+          "low": 0.11764705882352941,
+          "high": 0.35588235294117654,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.4050056882821388,
+        "recall": 0.3333333333333333,
+        "precision": 0.14285714285714285,
+        "f1": 0.2,
+        "auc": 0.6244108564927677,
+        "pr_auc": 0.13279675561905938,
+        "brier": 0.13935011901704333,
+        "expected_cost": 182.0,
+        "cost_per_wafer": 0.5796178343949044,
+        "recall_at_fp_budget": 0.14285714285714285,
+        "specificity": 0.856655290102389,
+        "confusion": {
+          "tn": 251,
+          "fp": 42,
+          "fn": 14,
+          "tp": 7
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {}
+    },
+    "hist_gradient_boosting": {
+      "role": "delivery_candidate",
+      "display_name": "HistGradientBoosting",
+      "feature_mode": "vote",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47699849170437403,
+          "mean": 0.4635997988939165,
+          "low": 0.41852061337355456,
+          "high": 0.5087606837606837,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.058823529411764705,
+          "mean": 0.09117647058823529,
+          "low": 0.0,
+          "high": 0.1794117647058824,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.25,
+          "mean": 0.28181929181929183,
+          "low": 0.0,
+          "high": 0.5150000000000002,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.09523809523809523,
+          "mean": 0.1340447531111147,
+          "low": 0.0,
+          "high": 0.25568181818181823,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6895424836601307,
+          "mean": 0.6874434389140271,
+          "low": 0.602928607340372,
+          "high": 0.7554298642533936,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.17438627340634852,
+          "mean": 0.18975855646485124,
+          "low": 0.12316047115694416,
+          "high": 0.2926541322117619,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0690391701246491,
+          "mean": 0.0677603163502838,
+          "low": 0.060494710028707085,
+          "high": 0.07882111028176755,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.649402390438247,
+          "mean": 0.6326693227091634,
+          "low": 0.5711155378486056,
+          "high": 0.6936254980079681,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2617647058823529,
+          "low": 0.11764705882352941,
+          "high": 0.4117647058823529,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.4915488379652202,
+        "recall": 0.047619047619047616,
+        "precision": 0.1,
+        "f1": 0.06451612903225806,
+        "auc": 0.7467901836502518,
+        "pr_auc": 0.18375990242413753,
+        "brier": 0.06953062720968751,
+        "expected_cost": 209.0,
+        "cost_per_wafer": 0.6656050955414012,
+        "recall_at_fp_budget": 0.23809523809523808,
+        "specificity": 0.9692832764505119,
+        "confusion": {
+          "tn": 284,
+          "fp": 9,
+          "fn": 20,
+          "tp": 1
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {}
+    },
+    "random_forest": {
+      "role": "reference_baseline",
+      "display_name": "随机森林",
+      "feature_mode": "vote",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5,
+          "mean": 0.4956950729009552,
+          "low": 0.47058823529411764,
+          "high": 0.5001068376068376,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.008823529411764706,
+          "low": 0.0,
+          "high": 0.058823529411764705,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.15,
+          "low": 0.0,
+          "high": 1.0,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.016666666666666666,
+          "low": 0.0,
+          "high": 0.1111111111111111,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6872800402212167,
+          "mean": 0.6857214680744091,
+          "low": 0.6166918049270991,
+          "high": 0.7709276018099548,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.16745375970337978,
+          "mean": 0.18293763945280092,
+          "low": 0.12195811038304942,
+          "high": 0.2726460673263607,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.06105956175298805,
+          "mean": 0.06111902390438247,
+          "low": 0.0579729282868526,
+          "high": 0.06412400398406376,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6772908366533864,
+          "mean": 0.6715139442231074,
+          "low": 0.6374501992031872,
+          "high": 0.6774900398406374,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.23823529411764705,
+          "low": 0.11764705882352941,
+          "high": 0.4117647058823529,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.5,
+        "recall": 0.0,
+        "precision": 0.0,
+        "f1": 0.0,
+        "auc": 0.8177311880383553,
+        "pr_auc": 0.23733718906821585,
+        "brier": 0.05656974522292993,
+        "expected_cost": 210.0,
+        "cost_per_wafer": 0.6687898089171974,
+        "recall_at_fp_budget": 0.38095238095238093,
+        "specificity": 1.0,
+        "confusion": {
+          "tn": 293,
+          "fp": 0,
+          "fn": 21,
+          "tp": 0
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {}
+    },
+    "balanced_random_forest": {
+      "role": "reference_baseline",
+      "display_name": "BalancedRandomForest",
+      "feature_mode": "vote",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.38763197586727,
+          "mean": 0.39116390145801916,
+          "low": 0.31005530417295124,
+          "high": 0.49026520864756157,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.35294117647058826,
+          "mean": 0.3411764705882353,
+          "low": 0.1735294117647059,
+          "high": 0.4735294117647059,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1667953667953668,
+          "mean": 0.1693801266933931,
+          "low": 0.07564102564102565,
+          "high": 0.2512931034482759,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.22649572649572652,
+          "mean": 0.22581931727539292,
+          "low": 0.10535714285714289,
+          "high": 0.32759538598047916,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.723604826546003,
+          "mean": 0.7210658622423327,
+          "low": 0.646480643539467,
+          "high": 0.7831196581196581,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.19805654218359825,
+          "mean": 0.21697601440782152,
+          "low": 0.1286001212873659,
+          "high": 0.3570145110435169,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1395139442231076,
+          "mean": 0.14094059760956176,
+          "low": 0.13306585657370518,
+          "high": 0.15019788844621512,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5577689243027888,
+          "mean": 0.5613545816733068,
+          "low": 0.4535856573705179,
+          "high": 0.703386454183267,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.29411764705882354,
+          "mean": 0.2823529411764706,
+          "low": 0.11764705882352941,
+          "high": 0.47058823529411764,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.37095725662278567,
+        "recall": 0.38095238095238093,
+        "precision": 0.18181818181818182,
+        "f1": 0.24615384615384614,
+        "auc": 0.7556476515520885,
+        "pr_auc": 0.23389977619963148,
+        "brier": 0.13595382165605097,
+        "expected_cost": 166.0,
+        "cost_per_wafer": 0.5286624203821656,
+        "recall_at_fp_budget": 0.23809523809523808,
+        "specificity": 0.8771331058020477,
+        "confusion": {
+          "tn": 257,
+          "fp": 36,
+          "fn": 13,
+          "tp": 8
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {}
+    },
+    "elasticnet_vote": {
+      "role": "feature_selection_control",
+      "display_name": "ElasticNet + 四方法投票",
+      "feature_mode": "vote",
+      "training_intervals": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3878205128205128,
+          "mean": 0.38949220713926597,
+          "low": 0.3424459527400704,
+          "high": 0.447272498743087,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.47058823529411764,
+          "low": 0.35000000000000003,
+          "high": 0.5911764705882353,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12095088819226751,
+          "mean": 0.12097106479611604,
+          "low": 0.08928866832092638,
+          "high": 0.1571078431372549,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18971887550200806,
+          "mean": 0.19208554863271,
+          "low": 0.14632911392405065,
+          "high": 0.23647058823529413,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6586224233283057,
+          "mean": 0.6547259929612869,
+          "low": 0.5817747611865259,
+          "high": 0.727187028657617,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1623935280153307,
+          "mean": 0.1801856435943854,
+          "low": 0.12123885063076303,
+          "high": 0.2641022750729914,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18187814041501316,
+          "mean": 0.1805658450562339,
+          "low": 0.16284532585882977,
+          "high": 0.198212369106736,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5956175298804781,
+          "mean": 0.5912350597609561,
+          "low": 0.5266932270916335,
+          "high": 0.6824701195219123,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2529411764705882,
+          "low": 0.11470588235294119,
+          "high": 0.35294117647058826,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "outer_holdout": {
+        "ber": 0.26572403705509506,
+        "recall": 0.7142857142857143,
+        "precision": 0.1724137931034483,
+        "f1": 0.2777777777777778,
+        "auc": 0.7737688932228182,
+        "pr_auc": 0.21396757984529458,
+        "brier": 0.17564650702135923,
+        "expected_cost": 132.0,
+        "cost_per_wafer": 0.42038216560509556,
+        "recall_at_fp_budget": 0.2857142857142857,
+        "specificity": 0.7542662116040956,
+        "confusion": {
+          "tn": 221,
+          "fp": 72,
+          "fn": 6,
+          "tp": 15
+        },
+        "n": 314,
+        "n_positive": 21
+      },
+      "artifacts": {}
+    }
+  },
+  "summary": {
+    "intervals": {
+      "logistic": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3939793866264455,
+          "mean": 0.3927287581699347,
+          "low": 0.33734288587229766,
+          "high": 0.4466880341880342,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.46176470588235297,
+          "low": 0.35000000000000003,
+          "high": 0.5941176470588236,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.11893939393939394,
+          "mean": 0.11931160552177947,
+          "low": 0.09457455113192818,
+          "high": 0.15723878592532903,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18729463307776562,
+          "mean": 0.18928873528676743,
+          "low": 0.1489102564102564,
+          "high": 0.23686274509803923,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6554801407742584,
+          "mean": 0.6388134741075916,
+          "low": 0.5513826043237808,
+          "high": 0.7251633986928104,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.15759063604050216,
+          "mean": 0.1735220096200945,
+          "low": 0.1085673992248317,
+          "high": 0.2969404987417817,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18664133892749735,
+          "mean": 0.18426446537080743,
+          "low": 0.1650486992942572,
+          "high": 0.20344111987859756,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.599601593625498,
+          "mean": 0.5950199203187252,
+          "low": 0.5254980079681275,
+          "high": 0.6671314741035856,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.23529411764705882,
+          "low": 0.11470588235294119,
+          "high": 0.4117647058823529,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "ridge": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.38543237807943687,
+          "mean": 0.3796254399195576,
+          "low": 0.29888134741075917,
+          "high": 0.4589994972347914,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.4911764705882352,
+          "low": 0.35294117647058826,
+          "high": 0.65,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12489557226399331,
+          "mean": 0.12504967788902877,
+          "low": 0.0865047995482778,
+          "high": 0.16331331331331334,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1963855421686747,
+          "mean": 0.19899973370177407,
+          "low": 0.13894111825828798,
+          "high": 0.2646339575917041,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6556058320764203,
+          "mean": 0.6444444444444444,
+          "low": 0.5564605329311212,
+          "high": 0.7367395676219205,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.16332504915682747,
+          "mean": 0.17529545443341635,
+          "low": 0.10913883096467145,
+          "high": 0.298735869227933,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5836653386454184,
+          "mean": 0.5780876494023903,
+          "low": 0.4537848605577689,
+          "high": 0.6908366533864543,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2617647058823529,
+          "low": 0.17058823529411765,
+          "high": 0.35588235294117654,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "elasticnet": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.4159753645047763,
+          "mean": 0.410369532428356,
+          "low": 0.36489441930618405,
+          "high": 0.4785382101558572,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3235294117647059,
+          "mean": 0.33823529411764713,
+          "low": 0.17647058823529413,
+          "high": 0.4735294117647059,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.14142857142857143,
+          "mean": 0.13334663878939162,
+          "low": 0.08766968325791856,
+          "high": 0.1698573400828348,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1923076923076923,
+          "mean": 0.19039233439200426,
+          "low": 0.11712184873949581,
+          "high": 0.24216748768472907,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6491955756661639,
+          "mean": 0.6566867772750126,
+          "low": 0.5620160884866767,
+          "high": 0.745211161387632,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.15125572359896497,
+          "mean": 0.1617352218012101,
+          "low": 0.09814944343752702,
+          "high": 0.2471163557336504,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.13908606824982395,
+          "mean": 0.1416905622270093,
+          "low": 0.12753673235270555,
+          "high": 0.15791435813120414,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5976095617529881,
+          "mean": 0.5964143426294821,
+          "low": 0.5318725099601593,
+          "high": 0.6822709163346613,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.24705882352941178,
+          "low": 0.11764705882352941,
+          "high": 0.35588235294117654,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "hist_gradient_boosting": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47699849170437403,
+          "mean": 0.4635997988939165,
+          "low": 0.41852061337355456,
+          "high": 0.5087606837606837,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.058823529411764705,
+          "mean": 0.09117647058823529,
+          "low": 0.0,
+          "high": 0.1794117647058824,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.25,
+          "mean": 0.28181929181929183,
+          "low": 0.0,
+          "high": 0.5150000000000002,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.09523809523809523,
+          "mean": 0.1340447531111147,
+          "low": 0.0,
+          "high": 0.25568181818181823,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6895424836601307,
+          "mean": 0.6874434389140271,
+          "low": 0.602928607340372,
+          "high": 0.7554298642533936,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.17438627340634852,
+          "mean": 0.18975855646485124,
+          "low": 0.12316047115694416,
+          "high": 0.2926541322117619,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0690391701246491,
+          "mean": 0.0677603163502838,
+          "low": 0.060494710028707085,
+          "high": 0.07882111028176755,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.649402390438247,
+          "mean": 0.6326693227091634,
+          "low": 0.5711155378486056,
+          "high": 0.6936254980079681,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2617647058823529,
+          "low": 0.11764705882352941,
+          "high": 0.4117647058823529,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5,
+          "mean": 0.4956950729009552,
+          "low": 0.47058823529411764,
+          "high": 0.5001068376068376,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.008823529411764706,
+          "low": 0.0,
+          "high": 0.058823529411764705,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.15,
+          "low": 0.0,
+          "high": 1.0,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.016666666666666666,
+          "low": 0.0,
+          "high": 0.1111111111111111,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6872800402212167,
+          "mean": 0.6857214680744091,
+          "low": 0.6166918049270991,
+          "high": 0.7709276018099548,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.16745375970337978,
+          "mean": 0.18293763945280092,
+          "low": 0.12195811038304942,
+          "high": 0.2726460673263607,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.06105956175298805,
+          "mean": 0.06111902390438247,
+          "low": 0.0579729282868526,
+          "high": 0.06412400398406376,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6772908366533864,
+          "mean": 0.6715139442231074,
+          "low": 0.6374501992031872,
+          "high": 0.6774900398406374,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.23823529411764705,
+          "low": 0.11764705882352941,
+          "high": 0.4117647058823529,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.38763197586727,
+          "mean": 0.39116390145801916,
+          "low": 0.31005530417295124,
+          "high": 0.49026520864756157,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.35294117647058826,
+          "mean": 0.3411764705882353,
+          "low": 0.1735294117647059,
+          "high": 0.4735294117647059,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1667953667953668,
+          "mean": 0.1693801266933931,
+          "low": 0.07564102564102565,
+          "high": 0.2512931034482759,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.22649572649572652,
+          "mean": 0.22581931727539292,
+          "low": 0.10535714285714289,
+          "high": 0.32759538598047916,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.723604826546003,
+          "mean": 0.7210658622423327,
+          "low": 0.646480643539467,
+          "high": 0.7831196581196581,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.19805654218359825,
+          "mean": 0.21697601440782152,
+          "low": 0.1286001212873659,
+          "high": 0.3570145110435169,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1395139442231076,
+          "mean": 0.14094059760956176,
+          "low": 0.13306585657370518,
+          "high": 0.15019788844621512,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5577689243027888,
+          "mean": 0.5613545816733068,
+          "low": 0.4535856573705179,
+          "high": 0.703386454183267,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.29411764705882354,
+          "mean": 0.2823529411764706,
+          "low": 0.11764705882352941,
+          "high": 0.47058823529411764,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3878205128205128,
+          "mean": 0.38949220713926597,
+          "low": 0.3424459527400704,
+          "high": 0.447272498743087,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.47058823529411764,
+          "low": 0.35000000000000003,
+          "high": 0.5911764705882353,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12095088819226751,
+          "mean": 0.12097106479611604,
+          "low": 0.08928866832092638,
+          "high": 0.1571078431372549,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18971887550200806,
+          "mean": 0.19208554863271,
+          "low": 0.14632911392405065,
+          "high": 0.23647058823529413,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.6586224233283057,
+          "mean": 0.6547259929612869,
+          "low": 0.5817747611865259,
+          "high": 0.727187028657617,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1623935280153307,
+          "mean": 0.1801856435943854,
+          "low": 0.12123885063076303,
+          "high": 0.2641022750729914,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18187814041501316,
+          "mean": 0.1805658450562339,
+          "low": 0.16284532585882977,
+          "high": 0.198212369106736,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.5956175298804781,
+          "mean": 0.5912350597609561,
+          "low": 0.5266932270916335,
+          "high": 0.6824701195219123,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2529411764705882,
+          "low": 0.11470588235294119,
+          "high": 0.35294117647058826,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      }
+    },
+    "paired_diff": {
+      "logistic - ridge": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.010432378079436921,
+          "mean": 0.013103318250377083,
+          "low": -0.029945952740070392,
+          "high": 0.05059703368526903,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02941176470588233,
+          "mean": -0.02941176470588236,
+          "low": -0.11764705882352944,
+          "high": 0.05882352941176466,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0048756066931405564,
+          "mean": -0.005738072367249315,
+          "low": -0.01980692660205844,
+          "high": 0.014560460822360054,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.008586955679978928,
+          "mean": -0.009710998415006635,
+          "low": -0.03172018800709593,
+          "high": 0.023040368674626673,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.006661639014580167,
+          "mean": -0.005630970336852681,
+          "low": -0.019582704876822458,
+          "high": 0.014630467571644101,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.002858840737851878,
+          "mean": -0.0017734448133218262,
+          "low": -0.026660183030553626,
+          "high": 0.03657089058354167,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.01195219123505975,
+          "mean": 0.016932270916334653,
+          "low": -0.040836653386454154,
+          "high": 0.06434262948207177,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.026470588235294124,
+          "low": -0.12352941176470587,
+          "high": 0.05882352941176466,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "logistic - elasticnet": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.009929612870789362,
+          "mean": -0.017640774258421317,
+          "low": -0.10229386626445447,
+          "high": 0.04957264957264957,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.08823529411764705,
+          "mean": 0.12352941176470585,
+          "low": -0.0029411764705882322,
+          "high": 0.29411764705882354,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02199575919311795,
+          "mean": -0.014035033267612152,
+          "low": -0.05363336839952076,
+          "high": 0.03363567804744276,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.008287351593639622,
+          "mean": -0.0011035991052368646,
+          "low": -0.061185488188195275,
+          "high": 0.07576677894196175,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02463549522373054,
+          "mean": -0.017873303167420834,
+          "low": -0.10888637506284571,
+          "high": 0.10433634992458518,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0034558246154830635,
+          "mean": 0.011786787818884382,
+          "low": -0.05509769762742198,
+          "high": 0.13774668073842986,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.04344015878367137,
+          "mean": 0.042573903143798164,
+          "low": 0.014578140109346072,
+          "high": 0.0644968456263315,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.003984063745019917,
+          "mean": -0.0013944223107569737,
+          "low": -0.11573705179282869,
+          "high": 0.09243027888446209,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.011764705882352946,
+          "low": -0.1764705882352941,
+          "high": 0.12352941176470597,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "logistic - hist_gradient_boosting": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.06322272498743087,
+          "mean": -0.07087104072398188,
+          "low": -0.14213800904977375,
+          "high": -0.010275263951734497,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.3529411764705882,
+          "mean": 0.3705882352941176,
+          "low": 0.2352941176470588,
+          "high": 0.5323529411764706,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.13212351029252437,
+          "mean": -0.1625076862975124,
+          "low": -0.4009622744669218,
+          "high": 0.09564860426929392,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.07208712710045154,
+          "mean": 0.05524398217565274,
+          "low": -0.08491453853692281,
+          "high": 0.1505,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05002513826043242,
+          "mean": -0.048629964806435375,
+          "low": -0.14061085972850673,
+          "high": 0.0352061337355455,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.008910224810924752,
+          "mean": -0.016236546844756703,
+          "low": -0.12922644582821918,
+          "high": 0.10132747443831926,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1182644430255328,
+          "mean": 0.11650414902052364,
+          "low": 0.09501207813299745,
+          "high": 0.13116833972151623,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.027888446215139473,
+          "mean": -0.03764940239043825,
+          "low": -0.1292828685258964,
+          "high": 0.04083665338645416,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.02941176470588233,
+          "mean": -0.026470588235294117,
+          "low": -0.17941176470588235,
+          "high": 0.12058823529411769,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "logistic - random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.10602061337355453,
+          "mean": -0.10296631473102061,
+          "low": -0.16265711412770234,
+          "high": -0.03504273504273502,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.45294117647058824,
+          "low": 0.29411764705882354,
+          "high": 0.5941176470588236,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.11478494623655913,
+          "mean": -0.030688394478220544,
+          "low": -0.8969296173830893,
+          "high": 0.13835616438356166,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18181818181818182,
+          "mean": 0.17262206862010074,
+          "low": 0.04866666666666668,
+          "high": 0.2244444444444445,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05725238813474104,
+          "mean": -0.046907993966817475,
+          "low": -0.10279034690799393,
+          "high": 0.03222724987430872,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.004047612980755719,
+          "mean": -0.009415629832706388,
+          "low": -0.10798471699583213,
+          "high": 0.07642192363003977,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12507947167656536,
+          "mean": 0.12314544146642496,
+          "low": 0.10410352001138866,
+          "high": 0.14081691669134658,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.07768924302788838,
+          "mean": -0.07649402390438242,
+          "low": -0.15179282868525895,
+          "high": 0.023904382470119508,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.0029411764705882387,
+          "low": -0.1235294117647059,
+          "high": 0.11764705882352941,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "logistic - balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0010055304172950918,
+          "mean": 0.0015648567119155381,
+          "low": -0.0814102564102564,
+          "high": 0.09274132730015086,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.11764705882352938,
+          "mean": 0.12058823529411762,
+          "low": -0.06176470588235295,
+          "high": 0.3000000000000001,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.047659190124943546,
+          "mean": -0.050068521171613665,
+          "low": -0.1132321681624941,
+          "high": 0.03131271880956083,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.03619970815092767,
+          "mean": -0.03653058198862554,
+          "low": -0.11786788261077133,
+          "high": 0.058926391069248275,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.08402463549522371,
+          "mean": -0.08225238813474109,
+          "low": -0.1495663650075415,
+          "high": -0.01498240321769728,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0341595680494972,
+          "mean": -0.043454004787727,
+          "low": -0.15651402127253483,
+          "high": 0.02220750940826989,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.04597609264004335,
+          "mean": 0.04332386776124569,
+          "low": 0.021942723198639658,
+          "high": 0.05772693173310677,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.031872509960159445,
+          "mean": 0.03366533864541833,
+          "low": -0.07529880478087653,
+          "high": 0.1571713147410359,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05882352941176472,
+          "mean": -0.04705882352941178,
+          "low": -0.17647058823529413,
+          "high": 0.11764705882352941,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "logistic - elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.0032365510306686857,
+          "low": -0.03635620915032678,
+          "high": 0.056793614881850196,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.008823529411764702,
+          "low": -0.11764705882352938,
+          "high": 0.05882352941176472,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.0016594592743365776,
+          "low": -0.027706243257402112,
+          "high": 0.018893660648286504,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.0027968133459425628,
+          "low": -0.04512226391494685,
+          "high": 0.02886528092085044,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.016339869281045694,
+          "mean": -0.015912518853695323,
+          "low": -0.04526143790849669,
+          "high": 0.012254901960784168,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.006336155882367342,
+          "mean": -0.006663633974290849,
+          "low": -0.03464921279079202,
+          "high": 0.03347569077218527,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0031585303521414337,
+          "mean": 0.003698620314573506,
+          "low": -0.002790921748200234,
+          "high": 0.009994238047624475,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.0037848605577689154,
+          "low": -0.052788844621513904,
+          "high": 0.07589641434262942,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.01764705882352942,
+          "low": -0.11764705882352941,
+          "high": 0.05882352941176466,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "ridge - elasticnet": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.025452488687782826,
+          "mean": -0.030744092508798403,
+          "low": -0.12358597285067868,
+          "high": 0.04864253393665161,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.14705882352941177,
+          "mean": 0.15294117647058822,
+          "low": -0.05882352941176466,
+          "high": 0.3529411764705882,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.015587459135846228,
+          "mean": -0.008296960900362835,
+          "low": -0.060201082804663374,
+          "high": 0.050791855203619916,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0035918473418473096,
+          "mean": 0.00860739930976977,
+          "low": -0.057781152739663465,
+          "high": 0.10239034638245542,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.025515334338863827,
+          "mean": -0.012242332830568154,
+          "low": -0.09998743086978379,
+          "high": 0.1120789341377576,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.01739721865699985,
+          "mean": 0.013560232632206213,
+          "low": -0.06601230696605803,
+          "high": 0.11863725817455167,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.01195219123505975,
+          "mean": -0.01832669322709163,
+          "low": -0.14043824701195218,
+          "high": 0.09840637450199209,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.014705882352941176,
+          "low": -0.1764705882352941,
+          "high": 0.1794117647058824,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "ridge - hist_gradient_boosting": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.09477124183006536,
+          "mean": -0.08397435897435898,
+          "low": -0.1664718451483157,
+          "high": -0.007554047259929628,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.4117647058823529,
+          "mean": 0.4,
+          "low": 0.29117647058823526,
+          "high": 0.5323529411764706,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.1300563236047107,
+          "mean": -0.15676961393026306,
+          "low": -0.4033838383838384,
+          "high": 0.11339841539332202,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.06617432445155824,
+          "mean": 0.06495498059065938,
+          "low": -0.06509088301256975,
+          "high": 0.18658890278608586,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.04776269482151829,
+          "mean": -0.0429989944695827,
+          "low": -0.15416038210155858,
+          "high": 0.042483660130718935,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.014597761985128098,
+          "mean": -0.014463102031434874,
+          "low": -0.12755294463995373,
+          "high": 0.09194956756946393,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.07171314741035856,
+          "mean": -0.0545816733067729,
+          "low": -0.1611553784860558,
+          "high": 0.06015936254980086,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.05882352941176468,
+          "mean": 6.938893903907228e-18,
+          "low": -0.17941176470588233,
+          "high": 0.17647058823529413,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "ridge - random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.1145676219205631,
+          "mean": -0.11606963298139768,
+          "low": -0.18846153846153846,
+          "high": -0.03952991452991446,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.47058823529411764,
+          "mean": 0.48235294117647054,
+          "low": 0.35,
+          "high": 0.65,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12030755314337405,
+          "mean": -0.024950322110971222,
+          "low": -0.8794372294372295,
+          "high": 0.14744144144144145,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.19162363740676994,
+          "mean": 0.18233306703510738,
+          "low": 0.07500159734202287,
+          "high": 0.2403607262302915,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.04908245349421814,
+          "mean": -0.04127702362996479,
+          "low": -0.10833961789844139,
+          "high": 0.044017094017094104,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0003916822615832316,
+          "mean": -0.007642185019384562,
+          "low": -0.10609893566041106,
+          "high": 0.0531251571146113,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.09362549800796804,
+          "mean": -0.09342629482071708,
+          "low": -0.18565737051792827,
+          "high": 0.015537848605577838,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.029411764705882346,
+          "mean": 0.02352941176470589,
+          "low": -0.11764705882352942,
+          "high": 0.12058823529411772,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "ridge - balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.004336349924585231,
+          "mean": -0.011538461538461544,
+          "low": -0.10721468074409252,
+          "high": 0.08507415786827555,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.11764705882352944,
+          "mean": 0.15,
+          "low": -0.05882352941176472,
+          "high": 0.35588235294117654,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0418951418951419,
+          "mean": -0.044330448804364354,
+          "low": -0.11437456058599434,
+          "high": 0.03625039819596271,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.025501083423618648,
+          "mean": -0.026819583573618903,
+          "low": -0.11248229632708355,
+          "high": 0.0714352781034517,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.07516339869281047,
+          "mean": -0.0766214177978884,
+          "low": -0.16311588738059335,
+          "high": -0.007591754650578045,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02578430850863575,
+          "mean": -0.041680559974405174,
+          "low": -0.1454777816786316,
+          "high": 0.03299275502048945,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.021912350597609598,
+          "mean": 0.016733067729083673,
+          "low": -0.10916334661354583,
+          "high": 0.14362549800796817,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.058823529411764684,
+          "mean": -0.020588235294117643,
+          "low": -0.12058823529411766,
+          "high": 0.12058823529411769,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "ridge - elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.002136752136752129,
+          "mean": -0.009866767219708398,
+          "low": -0.05262694821518349,
+          "high": 0.025351935646053265,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.020588235294117654,
+          "low": -0.05882352941176472,
+          "high": 0.11764705882352944,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0010035571137476662,
+          "mean": 0.0040786130929127366,
+          "low": -0.01025608799802349,
+          "high": 0.022919500382735686,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.002367294700631392,
+          "mean": 0.006914185069064073,
+          "low": -0.017996865608017082,
+          "high": 0.03812911379848154,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0131975867269985,
+          "mean": -0.010281548516842643,
+          "low": -0.03823529411764703,
+          "high": 0.021254399195575698,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.00694625831280804,
+          "mean": -0.0048901891609690225,
+          "low": -0.033989861793741354,
+          "high": 0.01936516139106803,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.003984063745019917,
+          "mean": -0.01314741035856574,
+          "low": -0.06812749003984069,
+          "high": 0.03227091633466134,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.008823529411764706,
+          "low": -0.05882352941176472,
+          "high": 0.061764705882353,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "elasticnet - hist_gradient_boosting": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05863499245852183,
+          "mean": -0.05323026646556056,
+          "low": -0.10569381598793359,
+          "high": 0.028814731020613337,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.23529411764705882,
+          "mean": 0.2470588235294117,
+          "low": 0.05882352941176472,
+          "high": 0.35588235294117654,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.12360890302066772,
+          "mean": -0.14847265302990018,
+          "low": -0.3709523809523809,
+          "high": 0.12768685215493725,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.08047131896236756,
+          "mean": 0.05634758128088961,
+          "low": -0.0697490884207907,
+          "high": 0.17901785714285715,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.03142282554047249,
+          "mean": -0.030756661639014544,
+          "low": -0.15394670688788337,
+          "high": 0.08492961287078937,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.025523542016112566,
+          "mean": -0.028023334663641087,
+          "low": -0.09639488663146999,
+          "high": 0.05106923212520118,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0742926426252124,
+          "mean": 0.07393024587672548,
+          "low": 0.060068329698723576,
+          "high": 0.09007737603776154,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.04382470119521914,
+          "mean": -0.036254980079681275,
+          "low": -0.10039840637450201,
+          "high": 0.06872509960159358,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02941176470588233,
+          "mean": -0.014705882352941175,
+          "low": -0.11764705882352941,
+          "high": 0.11764705882352941,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "elasticnet - random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.08377325289089993,
+          "mean": -0.08532554047259928,
+          "low": -0.13462795374560077,
+          "high": -0.02146178984414281,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.29411764705882354,
+          "mean": 0.3294117647058824,
+          "low": 0.17647058823529413,
+          "high": 0.4735294117647059,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.13167013167013167,
+          "mean": -0.016653361210608383,
+          "low": -0.8606170212765958,
+          "high": 0.16682389937106917,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.18187830687830686,
+          "mean": 0.1737256677253376,
+          "low": 0.09677135157545605,
+          "high": 0.2382808716707022,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0033308195072901947,
+          "mean": -0.02903469079939664,
+          "low": -0.1632918552036198,
+          "high": 0.08383609854198101,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.017673707052042978,
+          "mean": -0.021202417651590776,
+          "low": -0.13434880809556887,
+          "high": 0.07393852504551603,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0795609153955008,
+          "mean": 0.08057153832262681,
+          "low": 0.06824567553995078,
+          "high": 0.09979531430650293,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.07569721115537842,
+          "mean": -0.07509960159362546,
+          "low": -0.14163346613545816,
+          "high": 0.004980079681274916,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.029411764705882346,
+          "mean": 0.008823529411764707,
+          "low": -0.12647058823529414,
+          "high": 0.17647058823529413,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "elasticnet - balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.03154851684263449,
+          "mean": 0.019205630970336857,
+          "low": -0.09064228255404727,
+          "high": 0.13089492207139264,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02941176470588236,
+          "mean": -0.0029411764705882387,
+          "low": -0.2352941176470588,
+          "high": 0.1794117647058824,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.03993506493506495,
+          "mean": -0.036033487904001515,
+          "low": -0.13005303414469235,
+          "high": 0.061880184766214215,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0439610963748895,
+          "mean": -0.03542698288338868,
+          "low": -0.14694018542087744,
+          "high": 0.09347739095638263,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0628456510809452,
+          "mean": -0.06437908496732024,
+          "low": -0.18067496229260938,
+          "high": 0.03963046757164417,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.04866950747720586,
+          "mean": -0.05524079260661139,
+          "low": -0.16914950179476765,
+          "high": 0.0585020114704109,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0006312995356964196,
+          "mean": 0.0007499646174475183,
+          "low": -0.015303471842721017,
+          "high": 0.018940513509690154,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.047808764940239,
+          "mean": 0.0350597609561753,
+          "low": -0.10976095617529881,
+          "high": 0.1840637450199203,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05882352941176472,
+          "mean": -0.03529411764705882,
+          "low": -0.18529411764705883,
+          "high": 0.17647058823529413,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "elasticnet - elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.020613373554550035,
+          "mean": 0.020877325289090004,
+          "low": -0.05982905982905978,
+          "high": 0.08944821518350936,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.11764705882352938,
+          "mean": -0.13235294117647062,
+          "low": -0.29705882352941176,
+          "high": 0.0029411764705882778,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.013846923505830347,
+          "mean": 0.012375573993275572,
+          "low": -0.029981831893596593,
+          "high": 0.05106427285554423,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0020693802820796053,
+          "mean": -0.0016932142407056982,
+          "low": -0.0664487974817528,
+          "high": 0.061982270331143965,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.017345399698340813,
+          "mean": 0.001960784313725511,
+          "low": -0.10139517345399696,
+          "high": 0.09139014580191065,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.012464251265849768,
+          "mean": -0.018450421793175235,
+          "low": -0.128442174690992,
+          "high": 0.03506082649525104,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.04050375613722873,
+          "mean": -0.038875282829224665,
+          "low": -0.05492943342363856,
+          "high": -0.015024466115779019,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.013944223107569709,
+          "mean": 0.005179282868525889,
+          "low": -0.11155378486055767,
+          "high": 0.09860557768924305,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.005882352941176472,
+          "low": -0.12352941176470587,
+          "high": 0.12058823529411772,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "hist_gradient_boosting - random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.024069884364002037,
+          "mean": -0.03209527400703873,
+          "low": -0.08147938662644544,
+          "high": 0.014291101055806967,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.058823529411764705,
+          "mean": 0.08235294117647059,
+          "low": -0.0029411764705882314,
+          "high": 0.1794117647058824,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.25,
+          "mean": 0.13181929181929183,
+          "low": -0.8642857142857143,
+          "high": 0.5150000000000002,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.09523809523809523,
+          "mean": 0.117378086444448,
+          "low": -0.031944444444444435,
+          "high": 0.25568181818181823,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.006158873805932608,
+          "mean": 0.0017219708396179034,
+          "low": -0.041603821015585796,
+          "high": 0.07162518853695322,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.011419386738792184,
+          "mean": 0.0068209170120503105,
+          "low": -0.1302193048960532,
+          "high": 0.11792761124332862,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.006862457964869045,
+          "mean": 0.006641292445901337,
+          "low": -0.0009446405190016706,
+          "high": 0.017407193796479092,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.029880478087649376,
+          "mean": -0.03884462151394418,
+          "low": -0.10617529880478078,
+          "high": 0.025896414342629494,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.02352941176470588,
+          "low": -0.1235294117647059,
+          "high": 0.2352941176470588,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "hist_gradient_boosting - balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.06636500754147809,
+          "mean": 0.0724358974358974,
+          "low": 0.0014768728004022065,
+          "high": 0.15671191553544497,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.23529411764705882,
+          "mean": -0.25,
+          "low": -0.41470588235294115,
+          "high": -0.11470588235294113,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.09079391891891891,
+          "mean": 0.11243916512589869,
+          "low": -0.08557692307692306,
+          "high": 0.3597702834799611,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.10799319727891157,
+          "mean": -0.09177456416427829,
+          "low": -0.21815803244374674,
+          "high": 0.05235320182961695,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02997737556561092,
+          "mean": -0.0336224233283057,
+          "low": -0.09499120160884866,
+          "high": 0.020695072900955288,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.03829295212583045,
+          "mean": -0.027217457942970303,
+          "low": -0.11535970838081938,
+          "high": 0.0896427461542323,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.07257763632056616,
+          "mean": -0.07318028125927795,
+          "low": -0.08504924762546374,
+          "high": -0.0640093905122612,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.06374501992031867,
+          "mean": 0.07131474103585658,
+          "low": -0.02649402390438245,
+          "high": 0.18645418326693233,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02941176470588233,
+          "mean": -0.02058823529411765,
+          "low": -0.18235294117647058,
+          "high": 0.1794117647058824,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "hist_gradient_boosting - elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.07365510306686773,
+          "mean": 0.07410759175465058,
+          "low": 0.012518853695324239,
+          "high": 0.13548265460030162,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.38235294117647056,
+          "mean": -0.37941176470588234,
+          "low": -0.5294117647058824,
+          "high": -0.23529411764705882,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.14142316586083664,
+          "mean": 0.16084822702317575,
+          "low": -0.12348045397225725,
+          "high": 0.3938932146829813,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.06619121332743627,
+          "mean": -0.058040795521595315,
+          "low": -0.19562226391494686,
+          "high": 0.06881104985682558,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.03054298642533937,
+          "mean": 0.03271744595274005,
+          "low": -0.028871292106586236,
+          "high": 0.1266968325791854,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.010980782248089405,
+          "mean": 0.009572912870465852,
+          "low": -0.08237129245672498,
+          "high": 0.10869082688845469,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.11577281230396055,
+          "mean": -0.11280552870595013,
+          "low": -0.12550042797618755,
+          "high": -0.09280870469757001,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.03984063745019917,
+          "mean": 0.041434262948207165,
+          "low": -0.03665338645418335,
+          "high": 0.13187250996015937,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": 0.008823529411764702,
+          "low": -0.17647058823529413,
+          "high": 0.1764705882352941,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "random_forest - balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.11343640020110607,
+          "mean": 0.10453117144293615,
+          "low": 0.009734791352438432,
+          "high": 0.18994469582704876,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.35294117647058826,
+          "mean": -0.3323529411764706,
+          "low": -0.47352941176470587,
+          "high": -0.17352941176470585,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.15388257575757575,
+          "mean": -0.019380126693393125,
+          "low": -0.22830923248053392,
+          "high": 0.7757142857142858,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.21115802642896236,
+          "mean": -0.2091526506087263,
+          "low": -0.29771917320028507,
+          "high": -0.08070818070818069,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02853192559074913,
+          "mean": -0.03534439416792361,
+          "low": -0.08097033685268984,
+          "high": 0.016635243841126253,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.03266229018354218,
+          "mean": -0.034038374955020614,
+          "low": -0.12351436307126472,
+          "high": 0.023632285571318898,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.07915278884462151,
+          "mean": -0.07982157370517927,
+          "low": -0.08699950199203187,
+          "high": -0.07431031872509959,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.12151394422310757,
+          "mean": 0.11015936254980074,
+          "low": -0.026095617529880565,
+          "high": 0.2199203187250996,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05882352941176472,
+          "mean": -0.044117647058823525,
+          "low": -0.17647058823529413,
+          "high": 0.06176470588235299,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "random_forest - elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.10815736551030666,
+          "mean": 0.10620286576168929,
+          "low": 0.02523881347410756,
+          "high": 0.15755404725992964,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.47058823529411764,
+          "mean": -0.46176470588235297,
+          "low": -0.5911764705882353,
+          "high": -0.3499999999999999,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.11630434782608695,
+          "mean": 0.02902893520388395,
+          "low": -0.1376336898395722,
+          "high": 0.8709226565783943,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.18580676096859267,
+          "mean": -0.17541888196604333,
+          "low": -0.21946291560102302,
+          "high": -0.09112910481331529,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.026583710407239836,
+          "mean": 0.030995475113122152,
+          "low": -0.021568627450980534,
+          "high": 0.09735419808949232,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.007751118013028538,
+          "mean": 0.002751995858415539,
+          "low": -0.08045559358442975,
+          "high": 0.0993281472907168,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.12108726110758763,
+          "mean": -0.11944682115185148,
+          "low": -0.1352096798637081,
+          "high": -0.1019001465759612,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.07569721115537842,
+          "mean": 0.08027888446215134,
+          "low": -0.028685258964143506,
+          "high": 0.14302788844621517,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.029411764705882346,
+          "mean": -0.01470588235294118,
+          "low": -0.12058823529411766,
+          "high": 0.11764705882352942,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "balanced_random_forest - elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0011312217194570373,
+          "mean": 0.0016716943187531474,
+          "low": -0.06332956259426847,
+          "high": 0.08750000000000004,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.11764705882352938,
+          "mean": -0.12941176470588234,
+          "low": -0.29705882352941176,
+          "high": 0.0029411764705882778,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0529497384336094,
+          "mean": 0.04840906189727708,
+          "low": -0.03020264681555004,
+          "high": 0.11433511787982575,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.04120381284272023,
+          "mean": 0.03373376864268298,
+          "low": -0.0643610838854023,
+          "high": 0.11367071648102092,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.06171442936148824,
+          "mean": 0.06633986928104577,
+          "low": 0.021442936148818533,
+          "high": 0.13169306184012064,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.028625918959182067,
+          "mean": 0.036790370813436155,
+          "low": -0.044375314491593126,
+          "high": 0.1438700181259917,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.040351998237858414,
+          "mean": -0.03962524744667219,
+          "low": -0.05359552238675401,
+          "high": -0.01973934976321221,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.027888446215139473,
+          "mean": -0.02988047808764941,
+          "low": -0.11733067729083671,
+          "high": 0.07390438247011949,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.05882352941176466,
+          "mean": 0.02941176470588235,
+          "low": -0.11764705882352941,
+          "high": 0.12058823529411772,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      }
+    },
+    "vs_reference": {
+      "logistic": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.010432378079436921,
+          "mean": 0.013103318250377083,
+          "low": -0.029945952740070392,
+          "high": 0.05059703368526903,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.02941176470588233,
+          "mean": -0.02941176470588236,
+          "low": -0.11764705882352944,
+          "high": 0.05882352941176466,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0048756066931405564,
+          "mean": -0.005738072367249315,
+          "low": -0.01980692660205844,
+          "high": 0.014560460822360054,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.008586955679978928,
+          "mean": -0.009710998415006635,
+          "low": -0.03172018800709593,
+          "high": 0.023040368674626673,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.006661639014580167,
+          "mean": -0.005630970336852681,
+          "low": -0.019582704876822458,
+          "high": 0.014630467571644101,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.002858840737851878,
+          "mean": -0.0017734448133218262,
+          "low": -0.026660183030553626,
+          "high": 0.03657089058354167,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.01195219123505975,
+          "mean": 0.016932270916334653,
+          "low": -0.040836653386454154,
+          "high": 0.06434262948207177,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.026470588235294124,
+          "low": -0.12352941176470587,
+          "high": 0.05882352941176466,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "elasticnet": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.025452488687782826,
+          "mean": 0.030744092508798403,
+          "low": -0.04864253393665158,
+          "high": 0.1235859728506787,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.14705882352941177,
+          "mean": -0.15294117647058822,
+          "low": -0.3529411764705882,
+          "high": 0.05882352941176466,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.015587459135846228,
+          "mean": 0.008296960900362835,
+          "low": -0.05079185520361991,
+          "high": 0.060201082804663374,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0035918473418473096,
+          "mean": -0.00860739930976977,
+          "low": -0.10239034638245541,
+          "high": 0.057781152739663486,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.025515334338863827,
+          "mean": 0.012242332830568154,
+          "low": -0.1120789341377576,
+          "high": 0.09998743086978384,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.01739721865699985,
+          "mean": -0.013560232632206213,
+          "low": -0.11863725817455165,
+          "high": 0.06601230696605805,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.01195219123505975,
+          "mean": 0.01832669322709163,
+          "low": -0.09840637450199205,
+          "high": 0.1404382470119522,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.014705882352941176,
+          "low": -0.17941176470588235,
+          "high": 0.1764705882352941,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "hist_gradient_boosting": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.09477124183006536,
+          "mean": 0.08397435897435898,
+          "low": 0.007554047259929636,
+          "high": 0.1664718451483157,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.4117647058823529,
+          "mean": -0.4,
+          "low": -0.5323529411764706,
+          "high": -0.2911764705882352,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1300563236047107,
+          "mean": 0.15676961393026306,
+          "low": -0.11339841539332202,
+          "high": 0.4033838383838386,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.06617432445155824,
+          "mean": -0.06495498059065938,
+          "low": -0.18658890278608584,
+          "high": 0.06509088301256985,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.04776269482151829,
+          "mean": 0.0429989944695827,
+          "low": -0.04248366013071892,
+          "high": 0.15416038210155858,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.014597761985128098,
+          "mean": 0.014463102031434874,
+          "low": -0.09194956756946392,
+          "high": 0.12755294463995376,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.07171314741035856,
+          "mean": 0.0545816733067729,
+          "low": -0.06015936254980085,
+          "high": 0.16115537848605582,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.05882352941176468,
+          "mean": -6.938893903907228e-18,
+          "low": -0.17647058823529413,
+          "high": 0.17941176470588238,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.1145676219205631,
+          "mean": 0.11606963298139768,
+          "low": 0.0395299145299145,
+          "high": 0.18846153846153849,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.47058823529411764,
+          "mean": -0.48235294117647054,
+          "low": -0.65,
+          "high": -0.3499999999999999,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.12030755314337405,
+          "mean": 0.024950322110971222,
+          "low": -0.14744144144144145,
+          "high": 0.8794372294372296,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.19162363740676994,
+          "mean": -0.18233306703510738,
+          "low": -0.24036072623029148,
+          "high": -0.07500159734202282,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.04908245349421814,
+          "mean": 0.04127702362996479,
+          "low": -0.04401709401709408,
+          "high": 0.10833961789844142,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0003916822615832316,
+          "mean": 0.007642185019384562,
+          "low": -0.053125157114611264,
+          "high": 0.10609893566041108,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.09362549800796804,
+          "mean": 0.09342629482071708,
+          "low": -0.015537848605577782,
+          "high": 0.18565737051792833,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.029411764705882346,
+          "mean": -0.02352941176470589,
+          "low": -0.12058823529411766,
+          "high": 0.11764705882352942,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "balanced_random_forest": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.004336349924585231,
+          "mean": 0.011538461538461544,
+          "low": -0.08507415786827555,
+          "high": 0.10721468074409253,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.11764705882352944,
+          "mean": -0.15,
+          "low": -0.3558823529411765,
+          "high": 0.05882352941176472,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0418951418951419,
+          "mean": 0.044330448804364354,
+          "low": -0.03625039819596271,
+          "high": 0.11437456058599434,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.025501083423618648,
+          "mean": 0.026819583573618903,
+          "low": -0.07143527810345168,
+          "high": 0.11248229632708358,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.07516339869281047,
+          "mean": 0.0766214177978884,
+          "low": 0.007591754650578048,
+          "high": 0.16311588738059335,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": true
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.02578430850863575,
+          "mean": 0.041680559974405174,
+          "low": -0.03299275502048945,
+          "high": 0.14547778167863162,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.021912350597609598,
+          "mean": -0.016733067729083673,
+          "low": -0.14362549800796817,
+          "high": 0.10916334661354585,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.058823529411764684,
+          "mean": 0.020588235294117643,
+          "low": -0.12058823529411765,
+          "high": 0.12058823529411772,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      },
+      "elasticnet_vote": {
+        "ber": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.002136752136752129,
+          "mean": 0.009866767219708398,
+          "low": -0.025351935646053262,
+          "high": 0.052626948215183496,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.020588235294117654,
+          "low": -0.11764705882352944,
+          "high": 0.05882352941176472,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "precision": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.0010035571137476662,
+          "mean": -0.0040786130929127366,
+          "low": -0.02291950038273568,
+          "high": 0.010256087998023493,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "f1": {
+          "method": "percentile",
+          "n": 20,
+          "point": -0.002367294700631392,
+          "mean": -0.006914185069064073,
+          "low": -0.03812911379848153,
+          "high": 0.017996865608017082,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0131975867269985,
+          "mean": 0.010281548516842643,
+          "low": -0.021254399195575695,
+          "high": 0.03823529411764703,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "pr_auc": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.00694625831280804,
+          "mean": 0.0048901891609690225,
+          "low": -0.019365161391067993,
+          "high": 0.033989861793741354,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "brier": null,
+        "cost_per_wafer": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.003984063745019917,
+          "mean": 0.01314741035856574,
+          "low": -0.03227091633466133,
+          "high": 0.06812749003984069,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        },
+        "recall_at_fp_budget": {
+          "method": "percentile",
+          "n": 20,
+          "point": 0.0,
+          "mean": -0.008823529411764706,
+          "low": -0.06176470588235295,
+          "high": 0.05882352941176472,
+          "low_pct": 5.0,
+          "high_pct": 95.0,
+          "excludes_zero": false
+        }
+      }
+    },
+    "selection": {
+      "basis": "reference_train_repeated_holdout_paired_cost",
+      "reference_model": "ridge",
+      "candidate_pool": [
+        "logistic",
+        "ridge",
+        "elasticnet",
+        "hist_gradient_boosting"
+      ],
+      "eligible_replacements": [],
+      "selected_model": "ridge",
+      "uses_outer_test": false,
+      "replacement_rule": "paired_upper_below_zero",
+      "primary_metric": "cost_per_wafer"
+    },
+    "feature_selection": {
+      "elasticnet": {
+        "active_count": {
+          "method": "percentile",
+          "n": 20,
+          "point": 242.5,
+          "mean": 243.25,
+          "low": 229.95,
+          "high": 262.3,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "selector_count": {
+          "method": "percentile",
+          "n": 20,
+          "point": 590.0,
+          "mean": 590.0,
+          "low": 590.0,
+          "high": 590.0,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      },
+      "elasticnet_vote": {
+        "active_count": {
+          "method": "percentile",
+          "n": 20,
+          "point": 34.0,
+          "mean": 33.3,
+          "low": 29.9,
+          "high": 36.0,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        },
+        "selector_count": {
+          "method": "percentile",
+          "n": 20,
+          "point": 40.0,
+          "mean": 40.0,
+          "low": 40.0,
+          "high": 40.0,
+          "low_pct": 5.0,
+          "high_pct": 95.0
+        }
+      }
+    }
+  },
+  "external_benchmark": {
+    "paper": "Noh et al. 2024, Sensors",
+    "doi": "10.3390/s24175461",
+    "external": {
+      "model": "LR + SMOTE",
+      "train_test_ratio": "7:3",
+      "n_test": 471,
+      "n_test_positive": 31,
+      "recall": 0.5806,
+      "specificity": 0.8318,
+      "derived_ber": 0.2938
+    },
+    "local": {
+      "model": "ridge",
+      "train_test_ratio": "80:20",
+      "n_test": 314,
+      "n_test_positive": 21,
+      "ber": 0.24703396717048592,
+      "recall": 0.7619047619047619,
+      "specificity": 0.7440273037542662
+    },
+    "paired_comparison_available": false,
+    "limitations": [
+      "本项目模型只按训练侧折外配对代价选定；使用本次外层实测值，不沿用曾按测试 BER 挑出的旧值。",
+      "双方不是同一划分；测试失效数少且缺少论文行级预测，不能构造跨研究配对区间或宣称优越性。训练侧区间不等于外层测试置信区间。",
+      "BER 0.2938 是我方由论文 Sensitivity=0.5806 / Specificity=0.8318 推导，论文并未将其报告为最佳 BER。"
+    ]
+  },
+  "explanation": {
+    "enabled": true,
+    "model": "ridge",
+    "global": {
+      "shap_method": "linear",
+      "output_space": "decision margin",
+      "importance": {
+        "F122": 0.33401810474344173,
+        "F139": 0.3047372180702459,
+        "F311": 0.2680274026866051,
+        "F412": 0.26453731872671454,
+        "F130": 0.1849328786959665,
+        "F447": 0.18450599979387264,
+        "F060": 0.14418183813687085,
+        "F065": 0.141606371255879,
+        "F124": 0.11879568549157611,
+        "F125": 0.10699996957036251,
+        "F456": 0.08189474437010824,
+        "F574": 0.08022908793631463,
+        "F104": 0.07757575392567367,
+        "F489": 0.07203456711521614,
+        "F345": 0.06097208542821205,
+        "F022": 0.058665039563071925,
+        "F542": 0.05824180671536328,
+        "F057": 0.05819734501929808,
+        "F478": 0.054411275421892544,
+        "F181": 0.052686070510002264,
+        "F589": 0.052530057010590554,
+        "F112": 0.04961974152963141,
+        "F066": 0.04715909328047573,
+        "F175": 0.04626812168231834,
+        "F123": 0.045922713674104,
+        "F015": 0.04489874820143583,
+        "F127": 0.0439153410013163,
+        "F128": 0.042029310004386415,
+        "F214": 0.03666159148504166,
+        "F206": 0.036313144346274584,
+        "F126": 0.029167541585316845,
+        "F029": 0.028451251779095313,
+        "F041": 0.02563665386170665,
+        "F079": 0.025036288367346365,
+        "F453": 0.017701543558410176,
+        "F520": 0.01638100257718728,
+        "F248": 0.014387508228809666,
+        "F334": 0.012584026728490594,
+        "F578": 0.008406571094439978,
+        "F071": 0.005871125834571322
+      }
+    },
+    "cases": {
+      "TP": {
+        "wafer_id": 96,
+        "case": "TP",
+        "shap_method": "linear",
+        "output_space": "decision margin",
+        "y_true": 1,
+        "y_pred": 1,
+        "score": 0.7309966371075041,
+        "score_label": "决策分数(>0 判失效)",
+        "baseline": -0.32926031421958796,
+        "explained_output": 0.7309966371075041,
+        "reconstruction": 0.7309966371075038,
+        "consistency_ok": true,
+        "shap_values": {
+          "F139": 0.47049500072612294,
+          "F022": 0.4360321479525411,
+          "F412": -0.4168708548629372,
+          "F065": 0.319979803916303,
+          "F311": -0.30947889058121714,
+          "F447": 0.19224590170500558,
+          "F060": 0.1800027669640824,
+          "F104": 0.15211582101846494,
+          "F181": 0.1415544878101646,
+          "F130": 0.1350474220853375,
+          "F066": -0.11960903452761126,
+          "F478": -0.11864761445927088,
+          "F206": 0.10209790859297514,
+          "F456": -0.09801301670996007,
+          "F041": 0.0804673687256881,
+          "F574": -0.068104049607628,
+          "F029": -0.0657235644725014,
+          "F489": 0.06505672597395595,
+          "F057": 0.0606527014848446,
+          "F175": -0.050759480024227886,
+          "F125": -0.048945641008180836,
+          "F453": -0.04776478304077697,
+          "F127": 0.034934314025536775,
+          "F345": 0.034620622839337374,
+          "F214": 0.033646195217022376,
+          "F079": -0.03229742297585508,
+          "F124": -0.027972935215226053,
+          "F126": -0.027705044759590545,
+          "F334": 0.024038376142327893,
+          "F015": 0.02399158256884451,
+          "F112": 0.021870707613997616,
+          "F589": 0.021137081434677896,
+          "F542": -0.020743453283832602,
+          "F123": -0.02018771094038994,
+          "F128": 0.010359250642432092,
+          "F071": -0.008771459935181447,
+          "F520": 0.004497857251426254,
+          "F248": -0.00428488414541546,
+          "F578": 0.0024425723419165784,
+          "F122": -0.0011498251561105205
+        }
+      },
+      "FN": {
+        "wafer_id": 518,
+        "case": "FN",
+        "shap_method": "linear",
+        "output_space": "decision margin",
+        "y_true": 1,
+        "y_pred": 0,
+        "score": -0.067818473839377,
+        "score_label": "决策分数(>0 判失效)",
+        "baseline": -0.32926031421958796,
+        "explained_output": -0.067818473839377,
+        "reconstruction": -0.06781847383937673,
+        "consistency_ok": true,
+        "shap_values": {
+          "F122": 0.6120902581014753,
+          "F065": -0.5490932647007616,
+          "F139": -0.3311373960454271,
+          "F127": 0.29598248645094577,
+          "F412": 0.27379330751207503,
+          "F060": 0.22315290931123002,
+          "F125": -0.2191913488627228,
+          "F124": -0.2067953521162144,
+          "F066": 0.15119307166993087,
+          "F456": 0.1332425134226412,
+          "F574": 0.12331705571363667,
+          "F345": -0.11368283107274764,
+          "F542": -0.10925021221223521,
+          "F175": 0.10855508626589687,
+          "F478": -0.08776759465474947,
+          "F123": 0.08545688901234907,
+          "F041": 0.081141234444768,
+          "F206": 0.08091360481484242,
+          "F128": -0.07952296178483144,
+          "F447": -0.07367001692075972,
+          "F489": -0.06589634169626703,
+          "F022": 0.06308470118014292,
+          "F104": -0.055117334401109365,
+          "F079": -0.05328083529168051,
+          "F015": -0.05177596377342352,
+          "F181": 0.045858661578878024,
+          "F057": -0.04511705733927964,
+          "F126": 0.030828098755473137,
+          "F311": 0.02361157162796444,
+          "F112": 0.021870707613997616,
+          "F214": -0.021297140645623363,
+          "F589": 0.016527030958194175,
+          "F453": -0.015517106558916133,
+          "F071": -0.013133650586638804,
+          "F334": -0.012532123611837682,
+          "F130": 0.012482852637311484,
+          "F578": -0.012451513174175187,
+          "F520": -0.009822350018653529,
+          "F248": 0.009048477074725864,
+          "F029": -0.004656282298213803
+        }
+      }
+    },
+    "artifacts": {
+      "model_comparison_explain/shap_summary_bar_ridge.png": "59d83d8d2ac05acc5f6119ef8a31124f9395ca46898c90da6791ad2001613f33",
+      "model_comparison_explain/shap_values_ridge.json": "5976cd74ecc7e7441531d5e3dd86e37478ed1a203d04136196c7b033005829b2",
+      "model_comparison_explain/shap_explanation_wafer_96_TP.txt": "d512589b2ac4143632ee85e4d044a80c636295d1221820536bd9c63672c5b20d",
+      "model_comparison_explain/shap_contribution_wafer_96_TP.png": "9bac775bb083273698e52e2b2f675b43de2bc1b2fab119ba11f90371777a8af1",
+      "model_comparison_explain/shap_explanation_wafer_518_FN.txt": "7d6c4fe4f0bb10f0a54b679148e501e22ad94174d8841df75f87ace0444b7628",
+      "model_comparison_explain/shap_contribution_wafer_518_FN.png": "e5c0b1eca23d5d7ae207339df8dd41bdffa0ebf7a5e939e7382c5696738fcd93"
+    }
+  },
+  "execution": {
+    "n_jobs": 4,
+    "threads_per_worker": 1,
+    "reused_selection_records": 20,
+    "feature_selector_refits": 0,
+    "elapsed_seconds": 247.60716572199817,
+    "wall_seconds": 247.60716652870178
+  },
+  "evidence_file": "model_comparison_detail.json"
+}

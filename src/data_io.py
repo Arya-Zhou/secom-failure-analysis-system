@@ -1,8 +1,4 @@
-"""数据加载与标签转换。
-
-对应数据特点：591 维匿名特征、空格分隔、NaN 缺失、标签含时间戳。
-这里只负责"读进来 + 标签规范化"，不做填充/标准化（交给 preprocessing）。
-"""
+"""数据加载与标签转换：读入 591 维空格分隔的匿名特征与带时间戳的标签，标签由 1/-1 转为 1/0。"""
 from __future__ import annotations
 
 import logging
@@ -13,13 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def load_secom(features_path: str, labels_path: str, timestamp_format: str):
-    """加载 SECOM 特征、标签、时间戳。
-
-    返回:
-        X: DataFrame，列名 F001..F591（匿名特征）
-        y: Series，1=失败 / 0=通过（原始 1/-1 已转换）
-        timestamps: Series[datetime]
-    """
+    """加载 SECOM 特征、标签、时间戳。"""
     feature_names = [f"F{i + 1:03d}" for i in range(591)]
 
     X = pd.read_csv(

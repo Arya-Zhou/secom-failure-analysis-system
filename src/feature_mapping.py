@@ -1,9 +1,4 @@
-"""匿名特征 -> 业务含义映射层（扩展点）。
-
-SECOM 是匿名数据，映射表现在全为 unknown。架构上预留此层：
-接入真实产线数据时，只需填 feature_map.yaml（F026 -> 某工艺步骤/传感器），
-整套分析流程直接复用。这把"不懂业务"的短板转成"系统可迁移"的长板。
-"""
+"""匿名特征到业务含义的映射层（扩展点）。"""
 from __future__ import annotations
 
 from pathlib import Path

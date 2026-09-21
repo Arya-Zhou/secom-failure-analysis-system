@@ -1,0 +1,6 @@
+-r requirements.txt
+gradio==4.44.1
+huggingface_hub==0.25.2
+# Gradio 4.44.1 仍使用 TemplateResponse(name, context)，不能搭配 Starlette 0.45+/1.x
+fastapi==0.112.4
+starlette==0.38.6

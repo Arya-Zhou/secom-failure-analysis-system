@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "status": "ok",
-  "run_tag": "20260720_163120",
+  "run_tag": "20260913_194401",
   "model": "岭分类器",
   "random_seed": 42,
   "global": {
@@ -12,21 +12,21 @@
   "cases": {
     "TP": {
       "status": "generated",
-      "wafer_id": 336,
-      "report": "shap_explanation_wafer_336_TP.txt",
-      "plot": "shap_contribution_wafer_336_TP.png",
+      "wafer_id": 96,
+      "report": "shap_explanation_wafer_96_TP.txt",
+      "plot": "shap_contribution_wafer_96_TP.png",
       "output_space": "decision margin",
       "consistency_ok": true,
-      "deviation": 1.1102230246251565e-16
+      "deviation": 2.220446049250313e-16
     },
     "FN": {
       "status": "generated",
-      "wafer_id": 1242,
-      "report": "shap_explanation_wafer_1242_FN.txt",
-      "plot": "shap_contribution_wafer_1242_FN.png",
+      "wafer_id": 518,
+      "report": "shap_explanation_wafer_518_FN.txt",
+      "plot": "shap_contribution_wafer_518_FN.png",
       "output_space": "decision margin",
       "consistency_ok": true,
-      "deviation": 1.1102230246251565e-16
+      "deviation": 2.7755575615628914e-16
     }
   },
   "background_size": 100,
