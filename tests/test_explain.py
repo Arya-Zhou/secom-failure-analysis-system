@@ -1,15 +1,4 @@
-"""SHAP 可解释性模块专项测试（合成数据，秒级，不依赖真实数据文件）。
-
-测试原则：断言失败时输出实际值 vs 期望值，不以放宽容差或 skip 制造绿灯；
-kernel 兜底链路显式覆盖（KNN 路径）。
-
-结构：
-  - 参数化核心测试：explainer 创建、SHAP 维度、非全零、解释空间内自洽断言
-  - 定向产物测试：ridge（无 predict_proba）单晶圆报告；rf（tree）全局 json+png
-  - 显式报错：错误列序、维度不匹配、空背景
-  - TP/FN 极值选样逻辑
-  - pipeline 集成：required 失败语义与 manifest 审计
-"""
+"""SHAP 可解释性模块专项测试：合成数据，秒级完成，不依赖真实数据文件。"""
 from __future__ import annotations
 
 import json
@@ -18,7 +7,7 @@ import numpy as np
 import pandas as pd
 import pytest
 from sklearn.datasets import make_classification
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression, RidgeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -58,16 +47,21 @@ def fitted():
         "logistic": LogisticRegression(class_weight="balanced", max_iter=2000),
         "rf": RandomForestClassifier(
             n_estimators=30, class_weight="balanced", random_state=SEED),
+        "hgb": HistGradientBoostingClassifier(
+            max_iter=30, early_stopping=False, class_weight="balanced", random_state=SEED),
+        "elasticnet": LogisticRegression(
+            penalty="elasticnet", solver="saga", l1_ratio=0.5, C=0.1,
+            class_weight="balanced", random_state=SEED, max_iter=10000),
     }
     return {k: m.fit(X_ALL, Y_ALL) for k, m in models.items()}
 
 
 # ---------- 参数化核心测试：三模型 × (创建/维度/非零/自洽) ----------
 
-EXPECTED_METHOD = {"ridge": "linear", "logistic": "linear", "rf": "tree"}
+EXPECTED_METHOD = {"ridge": "linear", "logistic": "linear", "rf": "tree", "hgb": "tree", "elasticnet": "linear"}
 
 
-@pytest.mark.parametrize("name", ["ridge", "logistic", "rf"])
+@pytest.mark.parametrize("name", ["ridge", "logistic", "rf", "hgb", "elasticnet"])
 def test_core_shap_properties(name, fitted):
     model = fitted[name]
     explainer, method, space = _make_explainer(model, BG, seed=SEED)
@@ -110,7 +104,7 @@ def test_kernel_fallback_path():
 
 
 def test_model_score_semantics(fitted):
-    """展示分数语义：概率就是概率、margin 就是决策分数，不冒充。"""
+    """展示分数语义：概率就是概率、margin 就是决策分数。"""
     x_2d = X_ALL.iloc[[POS]]
     score, label = _model_score(fitted["logistic"], x_2d)
     assert "概率" in label and 0.0 <= score <= 1.0
@@ -219,7 +213,7 @@ def _boom(*args, **kwargs):
 
 
 def test_required_true_propagates_injected_failure(fitted, tmp_path, monkeypatch):
-    """针对曾实际发生的"异常被吞、验证假绿"问题的回归测试：required=true 时失败必须上抛。"""
+    """针对"异常被吞、验证假绿"问题的回归测试：required=true 时失败必须上抛。"""
     monkeypatch.setattr(pl, "explain_global", _boom)
     with pytest.raises(RuntimeError):
         pl._run_explain_stage(_stage_cfg(required=True), fitted["ridge"], "ridge",

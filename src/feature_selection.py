@@ -1,16 +1,4 @@
-"""多方法综合特征选择 —— 搬运自 secom.ipynb 的 feature_selection_analysis。
-
-四方法各自对全部特征排名（1 = 最好），取平均排名后选前 N 个：
-    f_test        SelectKBest 的 f_classif F 值，降序排名
-    mutual_info   互信息得分，降序排名（注意：原 notebook 未设种子，
-                  本实现传入全局 random_state 保证可复现；若因此与
-                  基线特征集有出入，可用 config 的 override_features_path 锁定）
-    rfe           基于 liblinear 逻辑回归的递归特征消除，ranking_ 直接作排名
-                  （被选中的 N 个特征 ranking_ 均为 1，存在并列，属原逻辑）
-    random_forest 随机森林 feature_importances_，降序排名
-
-quick 模式跳过最耗时的 RFE（约数百次逻辑回归拟合），用于冒烟调试。
-"""
+"""多方法综合特征选择：四方法各自排名后取平均排名选前 N 个，降低单一准则的偏好。"""
 from __future__ import annotations
 
 import logging
@@ -40,11 +28,7 @@ def select_features(
     random_state: int,
     quick: bool = False,
 ) -> tuple[list[str], pd.DataFrame]:
-    """返回 (最终选中的特征名列表, 各方法排名明细表)。
-
-    排名明细表列: 各方法排名 / 平均排名 / 综合排名，与 notebook 的
-    selection_results 结构对应，便于导出与人工核对。
-    """
+    """按 config 的 feature_selection 配置执行四方法排名投票。"""
     fs_cfg = cfg["feature_selection"]
     n = min(fs_cfg["n_features_to_select"], X_scaled.shape[1])
     methods = list(fs_cfg["methods"])
@@ -98,7 +82,7 @@ def select_features(
 
 
 def load_feature_override(path: str | Path) -> list[str]:
-    """加载已保存的特征列表文件（notebook 输出格式，行如 '1. F026'）。"""
+    """读取已保存的特征列表文件（行格式 'N. F0xx'），返回特征名列表。"""
     path = Path(path)
     if not path.exists():
         raise FileNotFoundError(f"override_features_path 不存在: {path}")
